@@ -15,6 +15,7 @@ export default class GameClass {
     this.renderer = null
     this.loading = true
     this.screenSize = null
+    this.clock = null
   }
   
   initialize ({fullScreen = false, size = {w: 300, h: 300}}) {
@@ -26,6 +27,8 @@ export default class GameClass {
     } else {
       this.screenSize = size
     }
+    this.clock = new THREE.Clock(true)
+    this.clock.start()
 
     this.scene = new THREE.Scene()
     this.camera = new THREE.PerspectiveCamera(
@@ -55,10 +58,14 @@ export default class GameClass {
   
     const update = () => {
       this.controls.update()
+      const deltaTime = this.clock.getDelta()
     
       for(const entity of this.entities) {
         if (entity?.update) {
-          entity.update(entity)
+          entity.update({
+            entity,
+            deltaTime
+          })
         }
       }
     
@@ -66,7 +73,8 @@ export default class GameClass {
         system.update({
           entities: this.entities,
           camera: this.camera,
-          THREE
+          THREE,
+          deltaTime
         })
       }
     

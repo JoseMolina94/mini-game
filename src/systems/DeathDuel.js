@@ -3,7 +3,7 @@ import React from "react"
 export const DeathDuel = () => {
   let clock = null
   let intervalToDrop = 10
-  let startDuel = 30
+  let startDuel = 120
   let isDeathDuel = false
   let drops = []
 

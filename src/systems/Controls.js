@@ -15,25 +15,26 @@ export const Controls = () => {
     }
   }
   
-  const update = ({entities = [], camera}) => {
+  const update = ({entities = [], camera, deltaTime}) => {
+    // console.log ('DD', deltaTime)
     // console.log ('FFF', entities)
     if (entities.length) {
       // console.log ('FFF', entities)
       const player = entities.find(ele => ele.name === 'player-1')
       
       if (keys.includes('ArrowUp')) {
-        player.position.z -= player.velocity
+        player.position.z -= player.velocity * deltaTime
         // camera.position.z = player.position.z + 10
       }
       if (keys.includes('ArrowDown')) {
-        player.position.z += player.velocity
+        player.position.z += player.velocity * deltaTime
         // camera.position.z = player.position.z - 10
       }
       if (keys.includes('ArrowRight')) {
-        player.position.x += player.velocity
+        player.position.x += player.velocity * deltaTime
       }
       if (keys.includes('ArrowLeft')) {
-        player.position.x -= player.velocity
+        player.position.x -= player.velocity * deltaTime
       }
   
       camera.position.x = player.position.x

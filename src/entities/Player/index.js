@@ -1,12 +1,12 @@
 import React from "react"
 
 export const Player = props => {
-  const velocity = 0.07
+  const velocity = 30
   let isDead = false
   
-  const update = (state) => {
+  const update = ({entity, deltaTime}) => {
     // console.log(state)
-    if (state.position.y < -50) {
+    if (entity.position.y < -50) {
       isDead = true
     }
   }
