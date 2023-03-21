@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Game } from "../components/Game";
 import {Player} from "../entities/Player";
 import { Ligths } from "../entities/Ligths";
@@ -7,6 +7,13 @@ import {Controls} from "../systems/Controls";
 import {DeathDuel} from "../systems/DeathDuel";
 
 export default function Home() {
+  
+  useEffect(() => {
+    const player = Cookies.get(`${process.env.NEXT_PUBLIC_CURRENT_PLAYER_COOKIE_NAME}`) || ''
+    if (!player) {
+      Cookies.set(`${process.env.NEXT_PUBLIC_CURRENT_PLAYER_COOKIE_NAME}`, 'player-1', { path: '/' })
+    }
+  }, [])
   
   return (
     <Game

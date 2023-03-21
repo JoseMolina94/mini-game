@@ -119,8 +119,6 @@ export default class GameClass {
             if (!found) {
               this.entities.push({...object, ...entity})
             }
-            console.log ('GG', entity)
-            
           },
           undefined,
           (error) => {

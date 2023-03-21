@@ -18,9 +18,12 @@ export const Controls = () => {
   const update = ({entities = [], camera, deltaTime}) => {
     // console.log ('DD', deltaTime)
     // console.log ('FFF', entities)
-    if (entities.length) {
+  
+    const currentPlayer = Cookies.get(`${process.env.NEXT_PUBLIC_CURRENT_PLAYER_COOKIE_NAME}`) || null
+    
+    if (entities.length && currentPlayer) {
       // console.log ('FFF', entities)
-      const player = entities.find(ele => ele.name === 'player-1')
+      const player = entities.find(ele => ele.name === currentPlayer)
       
       if (keys.includes('ArrowUp')) {
         player.position.z -= player.velocity * deltaTime
